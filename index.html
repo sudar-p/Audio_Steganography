@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Steganography - Hide & Extract Images</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔐 Audio Steganography</h1>
+            <p class="subtitle">Hide images inside WAV audio files • LSB encoding with pixel replication compression</p>
+        </header>
+
+        <main>
+            <!-- Tab Navigation -->
+            <nav class="tabs">
+                <button class="tab active" data-tab="encode">Encode</button>
+                <button class="tab" data-tab="decode">Decode</button>
+            </nav>
+
+            <!-- Encode Section -->
+            <section id="encode-section" class="panel active">
+                <div class="card">
+                    <h2>Hide Image in Audio</h2>
+                    <p class="hint">Upload a WAV audio file (cover) and a PNG/JPG image (secret). The image will be hidden inside the audio using LSB encoding.</p>
+
+                    <form id="encode-form" class="form">
+                        <div class="form-group">
+                            <label for="encode-audio">Audio File (WAV)</label>
+                            <input type="file" id="encode-audio" name="audio" accept=".wav" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="encode-image">Image File (PNG/JPG)</label>
+                            <input type="file" id="encode-image" name="image" accept=".png,.jpg,.jpeg" required>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary" id="encode-btn">
+                                <span class="btn-text">Encode & Download</span>
+                                <span class="spinner hidden"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <div id="encode-error" class="error hidden"></div>
+                    <div id="encode-success" class="success hidden">
+                        <p>✓ Encoding complete! Your file has been downloaded.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Decode Section -->
+            <section id="decode-section" class="panel">
+                <div class="card">
+                    <h2>Extract Image from Audio</h2>
+                    <p class="hint">Upload an encoded WAV file to extract the hidden image.</p>
+
+                    <form id="decode-form" class="form">
+                        <div class="form-group">
+                            <label for="decode-audio">Encoded Audio File (WAV)</label>
+                            <input type="file" id="decode-audio" name="audio" accept=".wav" required>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary" id="decode-btn">
+                                <span class="btn-text">Decode & Download</span>
+                                <span class="spinner hidden"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <div id="decode-error" class="error hidden"></div>
+                    <div id="decode-success" class="success hidden">
+                        <p>✓ Decoding complete! Your image has been downloaded.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Uses WAV format • LSB steganography • RLE pixel compression when needed</p>
+        </footer>
+    </div>
+
+    <script src="/script.js"></script>
+</body>
+</html>
